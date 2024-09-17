@@ -1,0 +1,14 @@
+{
+    "name": "entryshop/utils",
+    "require": {
+        "lorisleiva/laravel-actions": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Entryshop\\Utils\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
