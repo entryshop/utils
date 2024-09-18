@@ -5,10 +5,19 @@
     },
     "autoload": {
         "psr-4": {
-            "Entryshop\\Utils\\": "src/"
+            "Entryshop\\Utils\\": "src/",
+            "Entryshop\\Hook\\": "hook/"
         },
         "files": [
-            "src/helpers.php"
+            "src/helpers.php",
+            "hook/helpers.php"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Entryshop\\Hook\\Providers\\HookServiceProvider"
+            ]
+        }
     }
 }
