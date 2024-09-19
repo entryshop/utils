@@ -31,6 +31,29 @@ if (!function_exists('to_json')) {
     }
 }
 
+if (!function_exists('to_string')) {
+    function to_string($string)
+    {
+        if ('string' === gettype($string)) {
+            return $string;
+        }
+
+        if (is_numeric($string)) {
+            return $string;
+        }
+
+        if (is_bool($string)) {
+            return $string ? 'true' : 'false';
+        }
+
+        if (is_array($string) || is_object($string)) {
+            return json_encode($string);
+        }
+
+        return $string->__toString();
+    }
+}
+
 if (!function_exists('interpolate')) {
     function interpolate($template = null, $data = [])
     {
