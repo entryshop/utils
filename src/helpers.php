@@ -34,6 +34,10 @@ if (!function_exists('to_json')) {
 if (!function_exists('to_string')) {
     function to_string($string)
     {
+        if (empty($string)) {
+            return '';
+        }
+
         if ('string' === gettype($string)) {
             return $string;
         }
