@@ -48,7 +48,7 @@ if (!function_exists('to_string')) {
             }
 
             if (is_array($string) || is_object($string)) {
-                return json_encode($string);
+                return json_encode($string, JSON_PRETTY_PRINT);
             }
 
             if (empty($string)) {
