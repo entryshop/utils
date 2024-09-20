@@ -35,10 +35,6 @@ if (!function_exists('to_string')) {
     function to_string($string)
     {
         try {
-            if (empty($string)) {
-                return '';
-            }
-
             if ('string' === gettype($string)) {
                 return $string;
             }
@@ -49,6 +45,10 @@ if (!function_exists('to_string')) {
 
             if (is_bool($string)) {
                 return $string ? 'true' : 'false';
+            }
+
+            if (empty($string)) {
+                return '';
             }
 
             if (is_array($string) || is_object($string)) {
