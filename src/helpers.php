@@ -145,3 +145,37 @@ if (!function_exists('interpolate_recursive')) {
         return $input;
     }
 }
+
+
+if (!function_exists('render')) {
+    function render($value, ...$args)
+    {
+        if (empty($value)) {
+            return '';
+        }
+
+        if (is_string($value)) {
+            return $value;
+        }
+
+        if (is_array($value)) {
+            $result = '';
+            foreach ($value as $item) {
+                $result .= render($item, ...$args);
+            }
+
+            return $result;
+        }
+
+        if ($value instanceof Closure) {
+            $value = evaluate($value, ...$args);
+            return render($value, ...$args);
+        }
+
+        if (method_exists($value, 'render')) {
+            return $value->render(...$args);
+        }
+
+        return (string)$value;
+    }
+}
