@@ -155,7 +155,7 @@ if (!function_exists('render')) {
             return '';
         }
 
-        if ('string' === gettype($value)) {
+        if (is_string($value)) {
             return $value;
         }
 
