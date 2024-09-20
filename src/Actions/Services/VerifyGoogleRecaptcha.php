@@ -17,7 +17,7 @@ class VerifyGoogleRecaptcha
     public function __construct()
     {
         $this->url        = config('services.google.recaptcha.verify_url');
-        $this->api_key    = config('services.google.api_key');
+        $this->api_key    = config('services.google.recaptcha.api_key');
         $this->project_id = config('services.google.recaptcha.project_id');
         $this->keys       = [
             'ios'     => config('services.google.recaptcha.ios'),
@@ -34,18 +34,15 @@ class VerifyGoogleRecaptcha
      * @param  string  $platform  can be ios, android or web
      * @return boolean
      */
-    public function handle($token, $action, $platform): bool
+    public function handle($token, $action = '', $platform = 'site'): bool
     {
-//        if (empty($this->keys[$platform])) {
-//            return false;
-//        }
-
         $url = $this->url . $this->project_id . "/assessments?key=" . $this->api_key;
 
         $payload = [
             "event" => [
-                "token"   => $token,
-                "siteKey" => $this->keys[$platform],
+                "token"          => $token,
+                "siteKey"        => $this->keys[$platform],
+                "expectedAction" => $action,
             ],
         ];
 
