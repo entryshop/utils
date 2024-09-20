@@ -35,7 +35,7 @@ if (!function_exists('to_string')) {
     function to_string($string)
     {
         try {
-            if ('string' === gettype($string)) {
+            if (is_string($string)) {
                 return $string;
             }
 
