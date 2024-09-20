@@ -3,6 +3,9 @@
 /**
  * return implementation class
  */
+
+use Carbon\Carbon;
+
 if (!function_exists('resolve_class')) {
     function resolve_class($contact_class)
     {
@@ -145,7 +148,6 @@ if (!function_exists('interpolate_recursive')) {
         return $input;
     }
 }
-
 
 if (!function_exists('render')) {
     function render($value, ...$args)
