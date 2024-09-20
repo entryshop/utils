@@ -22,7 +22,7 @@ class VerifyGoogleRecaptcha
         $this->keys       = [
             'ios'     => config('services.google.recaptcha.ios'),
             'android' => config('services.google.recaptcha.android'),
-            'web'     => config('services.google.recaptcha.web'),
+            'site'    => config('services.google.recaptcha.site'),
         ];
     }
 
@@ -36,9 +36,11 @@ class VerifyGoogleRecaptcha
      */
     public function handle($token, $action, $platform): bool
     {
+        dd($this->keys);
         if (empty($this->keys[$platform])) {
             return false;
         }
+
         $url = $this->url . $this->project_id . "/assessments?key=" . $this->api_key;
 
         $payload = [
@@ -48,12 +50,7 @@ class VerifyGoogleRecaptcha
             ],
         ];
 
-        try {
-            $response = Http::asJson()->post($url, $payload)->json();
-        } catch (\Exception $exception) {
-            \Log::error($exception);
-            return false;
-        }
+        $response = Http::asJson()->post($url, $payload)->json();
 
         if (empty($response['riskAnalysis'])) {
             return false;
