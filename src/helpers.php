@@ -150,12 +150,21 @@ if (!function_exists('interpolate_recursive')) {
 if (!function_exists('render')) {
     function render($value, ...$args)
     {
-        if (empty($value)) {
+
+        if (is_null($value)) {
             return '';
         }
 
-        if (is_string($value)) {
+        if ('string' === gettype($value)) {
             return $value;
+        }
+
+        if (is_numeric($value)) {
+            return $value;
+        }
+
+        if (is_bool($value)) {
+            return $value ? 'true' : 'false';
         }
 
         if (is_array($value)) {
@@ -170,6 +179,10 @@ if (!function_exists('render')) {
         if ($value instanceof Closure) {
             $value = evaluate($value, ...$args);
             return render($value, ...$args);
+        }
+
+        if (empty($value)) {
+            return '';
         }
 
         if (method_exists($value, 'render')) {
