@@ -16,7 +16,7 @@ class VerifyGoogleRecaptcha
 
     public function __construct()
     {
-        $this->url        = config('services.google.recaptcha.url');
+        $this->url        = config('services.google.recaptcha.verify_url');
         $this->api_key    = config('services.google.api_key');
         $this->project_id = config('services.google.recaptcha.project_id');
         $this->keys       = [
@@ -36,9 +36,9 @@ class VerifyGoogleRecaptcha
      */
     public function handle($token, $action, $platform): bool
     {
-        if (empty($this->keys[$platform])) {
-            return false;
-        }
+//        if (empty($this->keys[$platform])) {
+//            return false;
+//        }
 
         $url = $this->url . $this->project_id . "/assessments?key=" . $this->api_key;
 
