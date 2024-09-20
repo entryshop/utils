@@ -47,12 +47,12 @@ if (!function_exists('to_string')) {
                 return $string ? 'true' : 'false';
             }
 
-            if (empty($string)) {
-                return '';
-            }
-
             if (is_array($string) || is_object($string)) {
                 return json_encode($string);
+            }
+
+            if (empty($string)) {
+                return '';
             }
 
             return $string->__toString();
