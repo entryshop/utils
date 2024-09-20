@@ -36,7 +36,6 @@ class VerifyGoogleRecaptcha
      */
     public function handle($token, $action, $platform): bool
     {
-        dd($this->keys);
         if (empty($this->keys[$platform])) {
             return false;
         }
