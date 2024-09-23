@@ -4,7 +4,7 @@
  * return implementation class
  */
 
-use Carbon\Carbon;
+use Entryshop\Utils\Support\GuessLanguage;
 
 if (!function_exists('resolve_class')) {
     function resolve_class($contact_class)
@@ -192,5 +192,12 @@ if (!function_exists('render')) {
         }
 
         return (string)$value;
+    }
+}
+
+if (!function_exists('guess_lang')) {
+    function guess_lang()
+    {
+        return GuessLanguage::run();
     }
 }
