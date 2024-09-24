@@ -8,7 +8,7 @@ class UtilsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        require_once './macros.php';
+        require_once __DIR__ . '/macros.php';
     }
 
     public function boot()

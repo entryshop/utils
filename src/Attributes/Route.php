@@ -12,7 +12,7 @@ class Route implements RouteAttribute
 
     public function __construct(
         public string $uri,
-        public string $method = 'get',
+        string $method = 'get',
         public ?string $name = null,
         array|string $middleware = [],
     ) {
