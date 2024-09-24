@@ -10,13 +10,13 @@
         },
         "files": [
             "src/helpers.php",
-            "hook/helpers.php",
-            "src/macros.php"
+            "hook/helpers.php"
         ]
     },
     "extra": {
         "laravel": {
             "providers": [
+                "Entryshop\\Utils\\UtilsServiceProvider",
                 "Entryshop\\Hook\\Providers\\HookServiceProvider"
             ]
         }
