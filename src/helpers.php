@@ -201,3 +201,22 @@ if (!function_exists('guess_lang')) {
         return GuessLanguage::run();
     }
 }
+
+if (!function_exists('to_attributes')) {
+    /**
+     * Convert array to attributes
+     * @param $array
+     * @return string
+     *
+     * @example  ['foo'=>'bar', 'x'=>'y'] to 'foo="bar" x="y"'
+     */
+    function to_attributes($array)
+    {
+        return collect($array)->map(function ($value, $key) {
+            if (empty($key)) {
+                return $value;
+            }
+            return $key . '="' . $value . '"';
+        })->implode(' ');
+    }
+}

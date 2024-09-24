@@ -10,7 +10,8 @@
         },
         "files": [
             "src/helpers.php",
-            "hook/helpers.php"
+            "hook/helpers.php",
+            "src/macros.php"
         ]
     },
     "extra": {
