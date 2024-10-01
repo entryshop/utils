@@ -43,7 +43,7 @@ if (!function_exists('to_string')) {
             }
 
             if (is_numeric($string)) {
-                return $string;
+                return (string)$string;
             }
 
             if (is_bool($string)) {
@@ -152,17 +152,16 @@ if (!function_exists('interpolate_recursive')) {
 if (!function_exists('render')) {
     function render($value, ...$args)
     {
-
-        if (is_null($value)) {
-            return '';
-        }
-
         if (is_string($value)) {
             return $value;
         }
 
         if (is_numeric($value)) {
-            return $value;
+            return (string)$value;
+        }
+
+        if (is_null($value)) {
+            return '';
         }
 
         if (is_bool($value)) {
