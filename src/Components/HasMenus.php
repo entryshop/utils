@@ -9,6 +9,10 @@ trait HasMenus
 {
     protected $_menus = [];
 
+    /**
+     * @param ...$args
+     * @return Menu
+     */
     public function menu(...$args)
     {
         if (is_string($args[0] ?? null)) {

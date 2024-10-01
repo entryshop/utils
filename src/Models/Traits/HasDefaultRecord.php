@@ -13,4 +13,9 @@ trait HasDefaultRecord
     {
         return self::query()->default(true)->first();
     }
+
+    public static function findOrDefault($id)
+    {
+        return self::query()->find($id) ?? self::getDefault();
+    }
 }
