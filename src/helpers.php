@@ -69,7 +69,7 @@ if (!function_exists('interpolate')) {
     function interpolate($template = null, $data = [])
     {
         if (empty($template)) {
-            return '';
+            return to_string($template);
         }
         return preg_replace_callback('/\{([\w\.]+(?:\([\w\.\s,]*\))?)\}/', function ($matches) use ($data, $template) {
             $allowedFunctions = [
