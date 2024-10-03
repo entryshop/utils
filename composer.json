@@ -1,7 +1,8 @@
 {
     "name": "entryshop/utils",
     "require": {
-        "lorisleiva/laravel-actions": "*"
+        "lorisleiva/laravel-actions": "*",
+        "spatie/laravel-csp": "^2.10"
     },
     "autoload": {
         "psr-4": {
