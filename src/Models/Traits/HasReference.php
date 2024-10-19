@@ -14,13 +14,13 @@ trait HasReference
     {
         static::creating(function ($model) {
             if (empty($model->reference)) {
-                $model->reference = static::getReferencePrefix() . Str::ulid();
+                $model->reference = static::getReferencePrefix($model) . Str::ulid();
             }
         });
     }
 
-    public static function getReferencePrefix()
+    public static function getReferencePrefix($model)
     {
-        return static::$reference_prefix ?? Str::lower(class_basename(static::class)) . '_';
+        return $model->reference_prefix ?? Str::lower(class_basename(static::class)) . '_';
     }
 }
