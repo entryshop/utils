@@ -8,17 +8,24 @@ trait Searchable
 {
     public function scopeSearch($query, $keyword)
     {
-        if (empty($this->searches)) {
+        $searches = $this->getSearches();
+
+        if ($searches) {
             return $query;
         }
 
-        $searches = $this->searches;
-        $keyword  = '%' . str_replace(' ', '%', $keyword) . '%';
+        $keyword = '%' . str_replace(' ', '%', $keyword) . '%';
+
         return $query->where(function ($query) use ($keyword, $searches) {
             foreach ($searches as $search) {
                 $this->addWhereLikeBinding($query, $search, true, $keyword);
             }
         });
+    }
+
+    public function getSearches()
+    {
+        return $this->searches ?? [];
     }
 
     protected function addWhereLikeBinding($query, ?string $column, ?bool $or, ?string $pattern)

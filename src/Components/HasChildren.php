@@ -38,7 +38,7 @@ trait HasChildren
     public function child(...$args)
     {
         if (empty($args[0])) {
-            abort(400, 'Unknown child type');
+            $args[0] = 'child_' . \Str::random();
         }
 
         if ($args[0] instanceof Renderable) {
