@@ -10,12 +10,10 @@ trait Searchable
     {
         $searches = $this->getSearches();
 
-        if ($searches) {
+        if (empty($searches)) {
             return $query;
         }
-
         $keyword = '%' . str_replace(' ', '%', $keyword) . '%';
-
         return $query->where(function ($query) use ($keyword, $searches) {
             foreach ($searches as $search) {
                 $this->addWhereLikeBinding($query, $search, true, $keyword);

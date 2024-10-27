@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 if (!Route::hasMacro('auto')) {
     Route::macro('auto', function ($name, $controller, array $options = []) {
@@ -23,12 +24,15 @@ if (!Route::hasMacro('auto')) {
                         $attributeClass = $attribute->newInstance();
                         $route_method   = $attributeClass->method;
                         $route_name     = $attribute->getArguments()['name'] ?? Str::kebab($method->getName());
-                        if (\Illuminate\Support\Str::startsWith($route_uri, '/')) {
+                        $middlewares    = $attribute->getArguments()['middleware'] ?? [];
+                        if (Str::startsWith($route_uri, '/')) {
                             $full_route = Str::replaceStart('/', '', $route_uri);
                         } else {
                             $full_route = $prefix . '/' . $route_uri;
                         }
-                        Route::$route_method($full_route, [$controller, $method->getName()])->name($as . $route_name);
+                        Route::$route_method($full_route, [$controller, $method->getName()])
+                            ->middleware($middlewares)
+                            ->name($as . $route_name);
                     }
                 }
             }
